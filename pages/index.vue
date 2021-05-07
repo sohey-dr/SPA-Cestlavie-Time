@@ -1,73 +1,37 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        spa-cestlavie-time
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+ <div class="page mt-5 text-center">
+    <form @submit.prevent="post">
+      <p><input type="text" v-model="name" placeholder="名前" name="name"/></p>
+      <p><input type="password" v-model="password_digest" placeholder="パスワード" name="password_digest"/></p>
+      <div class="login-btn">
+        <button type="submit">確認</button>
       </div>
-    </div>
-  </div>
+    </form>
+ </div>
 </template>
 
 <script>
-export default {}
+import axios from 'axios'
+export default {
+ data () {
+   return {
+     name: "",
+     password_digest: ""
+   }
+ },
+ methods: {
+  post() {
+    const params = new URLSearchParams();
+      params.append('name', this.name);
+      params.append('password_digest', this.password_digest);
+    axios.post("http://localhost:8000/api/v1/login", params)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+ }
+}
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
