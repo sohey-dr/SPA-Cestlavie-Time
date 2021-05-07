@@ -1,4 +1,5 @@
 <template>
+ <!-- TODO: CSSで整える -->
  <div class="page mt-5 text-center">
     <form @submit.prevent="post">
       <p><input type="text" v-model="name" placeholder="名前" name="name"/></p>
