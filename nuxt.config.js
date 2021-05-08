@@ -36,13 +36,16 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   axios: { 
-    proxy: true,
-    prefix: '/api/v1/login',
+    proxy: true
   },
   proxy: {
-    "/api/v1/login/": "http://localhost:8000"
+    '/api/v1/login': {
+      target: 'http://localhost:8000',
+      pathRewrite: {'^/api/v1/login/': ''},
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
