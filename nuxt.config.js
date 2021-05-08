@@ -34,7 +34,7 @@ export default {
   ],
 
   privateRuntimeConfig: {
-    api_baseurl: process.env.API_BASEURL,
+    apiBaseurl: process.env.API_BASEURL,
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
