@@ -33,6 +33,10 @@ export default {
   buildModules: [
   ],
 
+  privateRuntimeConfig: {
+    apiBaseurl: process.env.API_BASEURL,
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
@@ -43,7 +47,7 @@ export default {
   },
   proxy: {
     '/api/v1/login': {
-      target: 'http://localhost:8000',
+      target: process.env.API_BASEURL,
       pathRewrite: {'^/api/v1/login/': ''},
     }
   },
