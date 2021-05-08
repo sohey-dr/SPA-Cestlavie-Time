@@ -25,7 +25,7 @@ export default {
     const params = new URLSearchParams();
       params.append('name', this.name);
       params.append('password_digest', this.password_digest);
-    axios.post("http://localhost:8000/api/v1/login", params)
+    this.$axios.$post("/api/v1/login", params)
       .then(function (response) {
         console.log(response);
       })
