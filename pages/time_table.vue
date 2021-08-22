@@ -60,7 +60,7 @@
 export default {
   data() {
     return {
-      populationNumber: null,
+      bandCount: null,
       timeTable: "",
     }
   },
