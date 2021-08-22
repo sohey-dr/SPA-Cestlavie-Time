@@ -100,7 +100,7 @@
         <div class="w-28 mx-auto flex items-center justify-between">
           <button
             @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation, startTime })"
-            v-if="bandCount&&rehearsalTime&&performanceTime"
+            v-if="bandCount&&rehearsalTime&&performanceTime&&startTime"
             class="
               bg-blue-500
               hover:bg-blue-700
