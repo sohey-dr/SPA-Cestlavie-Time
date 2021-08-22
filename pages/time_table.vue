@@ -77,6 +77,10 @@ export default {
       return;
     },
     rehearsal(bands) {
+      // 最初にだけ音出しバンドが存在する
+      this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(15, 'm').format('HH:mm')} 音出しバンド\n`;
+      this.time.add(5, 'm'); 
+
       for (var i = bands.length - 1;i > -1;i--) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
         this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(15, 'm').format('HH:mm')} ${bands[i]}\n`;
