@@ -142,6 +142,7 @@ export default {
       this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(rehearsalTime, 'm').format('HH:mm')} 音出しバンド\n`;
       this.time.add(5, 'm'); 
 
+      // 換気のために別でカウントする
       let isVentilationCount = 2;
       for (var i = bands.length - 1;i > -1;i--) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
@@ -163,6 +164,7 @@ export default {
       return;
     },
     performance(bands, performanceTime, ventilation) {
+      // 換気のために別でカウントする
       let isVentilationCount = 1;
       for (var i = 0;i < bands.length;i++) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
