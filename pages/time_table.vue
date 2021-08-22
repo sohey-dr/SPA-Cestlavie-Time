@@ -10,7 +10,7 @@
             調査対象の母集団の数
           </label>
           <input
-            v-model="populationNumber"
+            v-model="bandCount"
             class="
               shadow
               appearance-none
@@ -31,7 +31,7 @@
         </div>
         <div class="w-28 mx-auto flex items-center justify-between">
           <button
-            @click="calculation({ populationNumber })"
+            @click="outputTimeTable({ bandCount })"
             class="
               bg-blue-500
               hover:bg-blue-700
@@ -45,27 +45,29 @@
             "
             type="button"
           >
-            計算する
+            出力する
           </button>
         </div>
       </form>
     </div>
-    <div class="font-bold text-xl text-center text-green-900">タイムテーブル</div>
+    <div class="text-center">
+      <div class="font-bold text-xl text-green-900">タイムテーブル</div>
+      <p>{{ timeTable }}</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data: {
-    populationNumber: null,
+  data() {
+    return {
+      populationNumber: null,
+      timeTable: "",
+    }
   },
   methods: {
-    calculation({ populationNumber }) {
-      var f_child = 0.05 / 1.96
-      var s_child = (populationNumber - 1) / 0.25
-      var children = f_child * f_child * s_child + 1
-      var answer = populationNumber / children
-      window.alert(Math.round(answer) + '人(個)程度必要です')
+    outputTimeTable({ bandCount }) {
+      this.timeTable = bandCount
     },
   },
 }
