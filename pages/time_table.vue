@@ -66,6 +66,9 @@ export default {
   },
   methods: {
     outputTimeTable({ bandCount }) {
+      // バンドの配列作成 ex) bandCountが5なら ["バンド1", "バンド2", "バンド3", "バンド4", "バンド5"]
+      const bands = [...Array(Number(bandCount)).keys()].map(i => `バンド${++i}`);
+
       let time = this.$moment("2021-01-01T09:30:00")
       this.timeTable = `${time.format('HH:mm')}\nas`
       time.add(4, 'm')
