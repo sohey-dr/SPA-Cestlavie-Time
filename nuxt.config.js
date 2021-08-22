@@ -32,7 +32,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/moment'
   ],
 
   privateRuntimeConfig: {
@@ -52,6 +53,9 @@ export default {
       target: process.env.API_BASEURL,
       pathRewrite: {'^/api/v1/login/': ''},
     }
+  },
+  moment: {
+    locales: ['ja']
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
