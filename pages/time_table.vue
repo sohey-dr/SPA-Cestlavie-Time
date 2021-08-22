@@ -66,7 +66,9 @@ export default {
   },
   methods: {
     outputTimeTable({ bandCount }) {
-      this.timeTable = bandCount
+      let time = this.$moment("2021-01-01T09:30:00")
+      this.timeTable = `${time.format('HH:mm')}\nas`
+      time.add(4, 'm')
     },
   },
 }
