@@ -77,9 +77,17 @@
             placeholder="本番の時間を入力"
           />
         </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+          >
+            換気の有無
+          </label>
+          <input v-model="ventilation" type="checkbox" class="form-checkbox">
+        </div>
         <div class="w-28 mx-auto flex items-center justify-between">
           <button
-            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime })"
+            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation })"
             class="
               bg-blue-500
               hover:bg-blue-700
@@ -114,32 +122,38 @@ export default {
       time: null,
       rehearsalTime: null,
       performanceTime: null,
+      ventilation: false,
     }
   },
   methods: {
-    outputTimeTable({ bandCount, rehearsalTime, performanceTime }) {
+    outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation }) {
       this.timeTable = "";
       // バンドの配列作成 ex) bandCountが5なら ["バンド1", "バンド2", "バンド3", "バンド4", "バンド5"]
       const bands = [...Array(Number(bandCount)).keys()].map(i => `バンド${++i}`);
 
       this.time = this.$moment("2021-01-01T09:00:00");
-      this.rehearsal(bands, rehearsalTime);
+      this.rehearsal(bands, rehearsalTime, ventilation);
       this.performance_preparation();
-      this.performance(bands, performanceTime);
+      this.performance(bands, performanceTime, ventilation);
       return;
     },
-    rehearsal(bands, rehearsalTime) {
+    rehearsal(bands, rehearsalTime, ventilation) {
       // 最初にだけ音出しバンドが存在する
       this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(rehearsalTime, 'm').format('HH:mm')} 音出しバンド\n`;
       this.time.add(5, 'm'); 
 
+      let isVentilationCount = 2;
       for (var i = bands.length - 1;i > -1;i--) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
         this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(rehearsalTime, 'm').format('HH:mm')} ${bands[i]}\n`;
+
         // 転換分で5分追加。顔合わせはすぐやるため最後のバンドの時は追加しない。
-        if (i !== 0) {
+        if (ventilation && isVentilationCount % 3 == 0 && i !== 0) {
+          this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
+        } else if (i !== 0) {
          this.time.add(5, 'm'); 
         }
+        isVentilationCount++
       }
       return;
     },
@@ -148,12 +162,19 @@ export default {
       this.timeTable += `START  [[[   ${this.time.add(30, 'm').format('HH:mm')}   ]]]\n`
       return;
     },
-    performance(bands, performanceTime) {
+    performance(bands, performanceTime, ventilation) {
+      let isVentilationCount = 1;
       for (var i = 0;i < bands.length;i++) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
         this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(performanceTime, 'm').format('HH:mm')} ${bands[i]}\n`;
+
         // 転換分で5分追加
-        this.time.add(5, 'm')
+        if (ventilation && isVentilationCount % 3 == 0 && i !== bands.length -1) {
+          this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
+        } else {
+          this.time.add(5, 'm')
+        }
+        isVentilationCount++
       }
       return;
     }
