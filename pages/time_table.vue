@@ -25,7 +25,7 @@
               focus:shadow-outline
             "
             id="username"
-            type="text"
+            type="number"
             placeholder="バンド数を入力"
           />
         </div>
