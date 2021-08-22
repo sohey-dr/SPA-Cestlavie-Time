@@ -7,7 +7,7 @@
             class="block text-gray-700 text-sm font-bold mb-2"
             for="username"
           >
-            調査対象の母集団の数
+            バンド数を入力
           </label>
           <input
             v-model="bandCount"
@@ -24,7 +24,6 @@
               focus:outline-none
               focus:shadow-outline
             "
-            id="username"
             type="number"
             placeholder="バンド数を入力"
           />
