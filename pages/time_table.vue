@@ -52,9 +52,34 @@
             placeholder="リハーサル時間を入力"
           />
         </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+          >
+            本番の時間
+          </label>
+          <input
+            v-model="performanceTime"
+            class="
+              shadow
+              appearance-none
+              border
+              rounded
+              w-full
+              py-2
+              px-3
+              text-gray-700
+              leading-tight
+              focus:outline-none
+              focus:shadow-outline
+            "
+            type="number"
+            placeholder="本番の時間を入力"
+          />
+        </div>
         <div class="w-28 mx-auto flex items-center justify-between">
           <button
-            @click="outputTimeTable({ bandCount, rehearsalTime })"
+            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime })"
             class="
               bg-blue-500
               hover:bg-blue-700
@@ -88,10 +113,11 @@ export default {
       timeTable: "",
       time: null,
       rehearsalTime: null,
+      performanceTime: null,
     }
   },
   methods: {
-    outputTimeTable({ bandCount, rehearsalTime }) {
+    outputTimeTable({ bandCount, rehearsalTime, performanceTime }) {
       this.timeTable = "";
       // バンドの配列作成 ex) bandCountが5なら ["バンド1", "バンド2", "バンド3", "バンド4", "バンド5"]
       const bands = [...Array(Number(bandCount)).keys()].map(i => `バンド${++i}`);
@@ -99,7 +125,7 @@ export default {
       this.time = this.$moment("2021-01-01T09:00:00");
       this.rehearsal(bands, rehearsalTime);
       this.performance_preparation();
-      this.performance(bands);
+      this.performance(bands, performanceTime);
       return;
     },
     rehearsal(bands, rehearsalTime) {
@@ -122,10 +148,10 @@ export default {
       this.timeTable += `START  [[[   ${this.time.add(30, 'm').format('HH:mm')}   ]]]\n`
       return;
     },
-    performance(bands) {
+    performance(bands, performanceTime) {
       for (var i = 0;i < bands.length;i++) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
-        this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(20, 'm').format('HH:mm')} ${bands[i]}\n`;
+        this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(performanceTime, 'm').format('HH:mm')} ${bands[i]}\n`;
         // 転換分で5分追加
         this.time.add(5, 'm')
       }
