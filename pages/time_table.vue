@@ -79,8 +79,10 @@ export default {
       for (var i = bands.length - 1;i > -1;i--) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
         this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(15, 'm').format('HH:mm')} ${bands[i]}\n`;
-        // 転換分で5分追加
-        this.time.add(5, 'm')
+        // 転換分で5分追加。顔合わせはすぐやるため最後のバンドの時は追加しない。
+        if (i !== 0) {
+         this.time.add(5, 'm'); 
+        }
       }
       return;
     },
