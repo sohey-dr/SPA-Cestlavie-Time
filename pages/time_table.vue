@@ -72,6 +72,7 @@ export default {
 
       this.time = this.$moment("2021-01-01T09:00:00");
       this.rehearsal(bands);
+      this.performance_preparation();
       return;
     },
     rehearsal(bands) {
@@ -81,6 +82,12 @@ export default {
         // 転換分で5分追加
         this.time.add(5, 'm')
       }
+      return;
+    },
+    performance_preparation() {
+      this.timeTable += `${this.time.format('HH:mm')} ＼＼＼\\顔合わせ//／／／`
+      // 本番までの時間を追加
+      this.time.add(30, 'm');
       return;
     },
   },
