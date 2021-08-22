@@ -93,11 +93,13 @@
           >
             換気の有無
           </label>
-          <input v-model="ventilation" type="checkbox" class="form-checkbox">
+          <div class="text-center">
+            <input v-model="ventilation" type="checkbox" class="form-checkbox">
+          </div>
         </div>
         <div class="w-28 mx-auto flex items-center justify-between">
           <button
-            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation })"
+            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation, startTime })"
             v-if="bandCount&&rehearsalTime&&performanceTime"
             class="
               bg-blue-500
