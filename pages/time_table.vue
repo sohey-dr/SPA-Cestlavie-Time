@@ -85,9 +85,8 @@ export default {
       return;
     },
     performance_preparation() {
-      this.timeTable += `${this.time.format('HH:mm')} ＼＼＼\\顔合わせ//／／／`
-      // 本番までの時間を追加
-      this.time.add(30, 'm');
+      this.timeTable += `${this.time.format('HH:mm')} ＼＼＼\\顔合わせ//／／／\n`
+      this.timeTable += `START  [[[   ${this.time.add(30, 'm').format('HH:mm')}   ]]]\n`
       return;
     },
   },
