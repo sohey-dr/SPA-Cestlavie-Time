@@ -8,7 +8,7 @@
         <button type="submit">確認</button>
       </div>
     </form>
-    <Debt :member=member v-if="isFound/>
+    <Debt :member=member v-if="isFound"/>
   </div>
 </template>
 
