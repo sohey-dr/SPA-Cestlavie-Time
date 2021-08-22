@@ -51,7 +51,7 @@
     </div>
     <div class="text-center">
       <div class="font-bold text-xl text-green-900">タイムテーブル</div>
-      <p>{{ timeTable }}</p>
+      <p style="white-space: pre-wrap;" >{{ timeTable }}</p>
     </div>
   </div>
 </template>
