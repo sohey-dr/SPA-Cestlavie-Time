@@ -73,6 +73,7 @@ export default {
       this.time = this.$moment("2021-01-01T09:00:00");
       this.rehearsal(bands);
       this.performance_preparation();
+      this.performance(bands);
       return;
     },
     rehearsal(bands) {
@@ -91,6 +92,15 @@ export default {
       this.timeTable += `START  [[[   ${this.time.add(30, 'm').format('HH:mm')}   ]]]\n`
       return;
     },
+    performance(bands) {
+      for (var i = 0;i < bands.length;i++) {
+        // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
+        this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(20, 'm').format('HH:mm')} ${bands[i]}\n`;
+        // 転換分で5分追加
+        this.time.add(5, 'm')
+      }
+      return;
+    }
   },
 }
 </script>
