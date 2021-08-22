@@ -81,7 +81,7 @@
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
           >
-            開始時間
+            ライブ開始時間
           </label>
           <div class="text-center">
             <input v-model="startTime" type="time" class="form-time">
