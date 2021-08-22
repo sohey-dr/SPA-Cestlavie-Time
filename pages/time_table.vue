@@ -81,14 +81,26 @@
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
           >
+            ライブ開始時間
+          </label>
+          <div class="text-center">
+            <input v-model="startTime" type="time" class="form-time">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+          >
             換気の有無
           </label>
-          <input v-model="ventilation" type="checkbox" class="form-checkbox">
+          <div class="text-center">
+            <input v-model="ventilation" type="checkbox" class="form-checkbox">
+          </div>
         </div>
         <div class="w-28 mx-auto flex items-center justify-between">
           <button
-            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation })"
-            v-if="bandCount&&rehearsalTime&&performanceTime"
+            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation, startTime })"
+            v-if="bandCount&&rehearsalTime&&performanceTime&&startTime"
             class="
               bg-blue-500
               hover:bg-blue-700
@@ -124,15 +136,16 @@ export default {
       rehearsalTime: null,
       performanceTime: null,
       ventilation: false,
+      startTime: null,
     }
   },
   methods: {
-    outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation }) {
+    outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation, startTime }) {
       this.timeTable = "";
       // バンドの配列作成 ex) bandCountが5なら ["バンド1", "バンド2", "バンド3", "バンド4", "バンド5"]
       const bands = [...Array(Number(bandCount)).keys()].map(i => `バンド${++i}`);
 
-      this.time = this.$moment("2021-01-01T09:00:00");
+      this.time = this.$moment(`2021-01-01T${startTime}:00`);
       this.rehearsal(bands, rehearsalTime, ventilation);
       this.performance_preparation();
       this.performance(bands, performanceTime, ventilation);
