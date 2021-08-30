@@ -180,7 +180,7 @@ export default {
     rehearsal(bands, rehearsalTime, ventilation) {
       // 最初にだけ音出しバンドが存在する
       this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(rehearsalTime, 'm').format('HH:mm')} 音出しバンド\n`;
-      // this.time.add(5, 'm'); 
+      this.time.add(5, 'm'); 
 
       // 換気のために別でカウントする
       let isVentilationCount = 2;
@@ -192,7 +192,8 @@ export default {
         if (ventilation && isVentilationCount % 3 == 0 && i !== 0) {
           this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
         } else if (i !== 0) {
-         this.time.add(5, 'm'); 
+        // リハの転換
+        //  this.time.add(5, 'm'); 
         }
         isVentilationCount++
       }
