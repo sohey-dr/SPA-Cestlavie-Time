@@ -180,7 +180,7 @@ export default {
     rehearsal(bands, rehearsalTime, ventilation) {
       // 最初にだけ音出しバンドが存在する
       this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(rehearsalTime, 'm').format('HH:mm')} 音出しバンド\n`;
-      this.time.add(5, 'm'); 
+      // this.time.add(5, 'm'); 
 
       // 換気のために別でカウントする
       let isVentilationCount = 2;
