@@ -173,7 +173,7 @@ export default {
       return;
     },
     performance_preparation() {
-      this.timeTable += `${this.time.format('HH:mm')} ＼＼＼\\顔合わせ//／／／\n`
+      this.timeTable += `${this.time.add(10, 'm').format('HH:mm')} ＼＼＼\\顔合わせ//／／／\n`
       this.timeTable += `START  [[[   ${this.time.add(30, 'm').format('HH:mm')}   ]]]\n`
       return;
     },
