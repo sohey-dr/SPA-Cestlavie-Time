@@ -214,7 +214,7 @@ export default {
 
         // 転換分で5分追加
         if (ventilation && isVentilationCount % 3 == 0 && i !== bands.length -1) {
-          this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
+          this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(10, 'm').format('HH:mm')} <換気>\n`;
         } else {
           this.time.add(5, 'm')
         }
