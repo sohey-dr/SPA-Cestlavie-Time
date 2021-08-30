@@ -192,7 +192,8 @@ export default {
         if (ventilation && isVentilationCount % 3 == 0 && i !== 0) {
           this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
         } else if (i !== 0) {
-         this.time.add(5, 'm'); 
+        // リハの転換
+        //  this.time.add(5, 'm'); 
         }
         isVentilationCount++
       }
