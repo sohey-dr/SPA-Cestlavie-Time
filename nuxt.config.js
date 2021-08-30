@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'spa-cestlavie-time',
+    title: 'セラヴィ専用サイト',
     htmlAttrs: {
       lang: 'en'
     },

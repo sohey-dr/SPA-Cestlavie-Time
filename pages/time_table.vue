@@ -56,6 +56,31 @@
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
           >
+            顔合わせ後開ける時間
+          </label>
+          <input
+            v-model="faceToFaceMeeting"
+            class="
+              shadow
+              appearance-none
+              border
+              rounded
+              w-full
+              py-2
+              px-3
+              text-gray-700
+              leading-tight
+              focus:outline-none
+              focus:shadow-outline
+            "
+            type="number"
+            placeholder="顔合わせ後開ける時間を入力"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+          >
             本番の時間
           </label>
           <input
@@ -99,8 +124,8 @@
         </div>
         <div class="w-28 mx-auto flex items-center justify-between">
           <button
-            @click="outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation, startTime })"
-            v-if="bandCount&&rehearsalTime&&performanceTime&&startTime"
+            @click="outputTimeTable({ bandCount, rehearsalTime, faceToFaceMeeting, performanceTime, ventilation, startTime })"
+            v-if="bandCount&&rehearsalTime&&faceToFaceMeeting&&performanceTime&&startTime"
             class="
               bg-blue-500
               hover:bg-blue-700
@@ -137,17 +162,18 @@ export default {
       performanceTime: null,
       ventilation: false,
       startTime: null,
+      faceToFaceMeeting: null,
     }
   },
   methods: {
-    outputTimeTable({ bandCount, rehearsalTime, performanceTime, ventilation, startTime }) {
+    outputTimeTable({ bandCount, rehearsalTime, faceToFaceMeeting, performanceTime, ventilation, startTime }) {
       this.timeTable = "";
       // バンドの配列作成 ex) bandCountが5なら ["バンド1", "バンド2", "バンド3", "バンド4", "バンド5"]
       const bands = [...Array(Number(bandCount)).keys()].map(i => `バンド${++i}`);
 
       this.time = this.$moment(`2021-01-01T${startTime}:00`);
       this.rehearsal(bands, rehearsalTime, ventilation);
-      this.performance_preparation();
+      this.performance_preparation(faceToFaceMeeting);
       this.performance(bands, performanceTime, ventilation);
       return;
     },
@@ -172,9 +198,11 @@ export default {
       }
       return;
     },
-    performance_preparation() {
-      this.timeTable += `${this.time.format('HH:mm')} ＼＼＼\\顔合わせ//／／／\n`
+    performance_preparation(faceToFaceMeeting) {
+      this.timeTable += `${this.time.add(10, 'm').format('HH:mm')} ＼＼＼\\顔合わせ//／／／\n`
       this.timeTable += `START  [[[   ${this.time.add(30, 'm').format('HH:mm')}   ]]]\n`
+      // 顔合わせ後開ける時間
+      this.time.add(faceToFaceMeeting, 'm')
       return;
     },
     performance(bands, performanceTime, ventilation) {
