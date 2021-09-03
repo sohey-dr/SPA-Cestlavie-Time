@@ -186,11 +186,11 @@ export default {
       let isVentilationCount = 2;
       for (var i = bands.length - 1;i > -1;i--) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
-        this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(rehearsalTime, 'm').format('HH:mm')} ${bands[i]}\n`;
+        this.timeTable += `${this.time.format('HH:mm')} 〜 ${this.time.add(rehearsalTime, 'm').format('HH:mm')} ${bands[i]}\n`;
 
         // 転換分で5分追加。顔合わせはすぐやるため最後のバンドの時は追加しない。
         if (ventilation && isVentilationCount % 3 == 0 && i !== 0) {
-          this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
+          this.timeTable += `${this.time.format('HH:mm')} 〜 ${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
         } else if (i !== 0) {
         // リハの転換
         //  this.time.add(5, 'm'); 
@@ -211,11 +211,11 @@ export default {
       let isVentilationCount = 1;
       for (var i = 0;i < bands.length;i++) {
         // タイムテーブルの肝の部分 ex) 15:00〜15:15 バンド1
-        this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(performanceTime, 'm').format('HH:mm')} ${bands[i]}\n`;
+        this.timeTable += `${this.time.format('HH:mm')} 〜 ${this.time.add(performanceTime, 'm').format('HH:mm')} ${bands[i]}\n`;
 
         // 転換分で10分追加
         if (ventilation && isVentilationCount % 3 == 0 && i !== bands.length -1) {
-          this.timeTable += `${this.time.format('HH:mm')}〜${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
+          this.timeTable += `${this.time.format('HH:mm')} 〜 ${this.time.add(5, 'm').format('HH:mm')} <換気>\n`;
         } else {
           this.time.add(10, 'm')
         }
