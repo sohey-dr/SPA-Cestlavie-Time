@@ -200,10 +200,9 @@ export default {
     },
     performance_preparation(faceToFaceMeeting) {
       this.timeTable += `${this.time.add(10, 'm').format('HH:mm')} ＼＼＼\\顔合わせ//／／／\n`
+      
       // 顔合わせ後開ける時間
-      this.time.add(faceToFaceMeeting, 'm')
-
-      this.timeTable += `START  [[[   ${this.time.add(30, 'm').format('HH:mm')}   ]]]\n`
+      this.timeTable += `START  [[[   ${this.time.add(faceToFaceMeeting, 'm').format('HH:mm')}   ]]]\n`
       return;
     },
     performance(bands, performanceTime, ventilation) {
