@@ -1,15 +1,16 @@
 <template>
-  <div class="text-center">
-    <nuxt-link to="/time_table">
-      タイムテーブル自動作成はここから
-    </nuxt-link>
+  <div class="text-center grid w-full md:grid-cols-2">
+      <Admin />
+      <Admin />
   </div>
 </template>
 
 <script>
+import Admin from "@/components/Admin"
 
 export default {
   components: {
+    Admin
   },
   data () {
     return {
