@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container mx-auto my-28 w-full max-w-xs">
+  <div class="my-28">
+    <div class="container mx-auto w-full max-w-xs">
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
           <label
