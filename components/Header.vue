@@ -5,10 +5,16 @@
       <div class="flex items-center -mx-6">
         <div class="lg:w-1/4 xl:w-1/5 pl-6 pr-6 lg:pr-8">
           <div class="flex items-center">
-            <NuxtLink to="/">Ce'st La Vie</NuxtLink>
+            <nuxt-link to="/">Ce'st La Vie</nuxt-link>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+a:hover {
+  text-decoration: none;
+}
+</style>

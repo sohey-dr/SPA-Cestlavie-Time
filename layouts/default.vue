@@ -71,6 +71,16 @@ html {
   margin-left: 15px;
 }
 
+/* 以下、カスタムで追加している */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
