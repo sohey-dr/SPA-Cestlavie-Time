@@ -1,16 +1,18 @@
 <template>
-  <div class="text-center grid w-full md:grid-cols-2">
-      <Admin />
-      <Admin />
+  <div class="text-center grid w-full gap-1.5 md:grid-cols-2">
+      <AdminCard />
+      <MemberCard />
   </div>
 </template>
 
 <script>
-import Admin from "@/components/Admin"
+import AdminCard from "@/components/AdminCard"
+import MemberCard from "@/components/MemberCard"
 
 export default {
   components: {
-    Admin
+    AdminCard,
+    MemberCard
   },
   data () {
     return {
