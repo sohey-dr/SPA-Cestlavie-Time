@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container mx-auto my-28 w-full max-w-xs">
+  <div class="my-28">
+    <div class="container mx-auto w-full max-w-xs">
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
           <label
@@ -144,10 +144,14 @@
         </div>
       </form>
     </div>
-    <div class="text-center">
-      <div class="font-bold text-xl text-green-900">タイムテーブル</div>
-      <p style="white-space: pre-wrap;" >{{ timeTable }}</p>
-    </div>
+
+    <modal name="modal-content" height="auto" :scrollable="true">
+      <div class="text-center">
+        <div class="font-bold text-xl text-green-900 my-3">タイムテーブル</div>
+        <p style="white-space: pre-wrap;" >{{ timeTable }}</p>
+      </div>
+    </modal>
+
   </div>
 </template>
 
@@ -175,6 +179,7 @@ export default {
       this.rehearsal(bands, rehearsalTime, ventilation);
       this.performance_preparation(faceToFaceMeeting);
       this.performance(bands, performanceTime, ventilation);
+      this.$modal.show("modal-content");
       return;
     },
     rehearsal(bands, rehearsalTime, ventilation) {
