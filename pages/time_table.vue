@@ -144,10 +144,14 @@
         </div>
       </form>
     </div>
-    <div class="text-center">
-      <div class="font-bold text-xl text-green-900">タイムテーブル</div>
-      <p style="white-space: pre-wrap;" >{{ timeTable }}</p>
-    </div>
+
+    <modal name="modal-content">
+      <div class="text-center">
+        <div class="font-bold text-xl text-green-900 my-3">タイムテーブル</div>
+        <p style="white-space: pre-wrap;" >{{ timeTable }}</p>
+      </div>
+    </modal>
+
   </div>
 </template>
 
@@ -175,6 +179,7 @@ export default {
       this.rehearsal(bands, rehearsalTime, ventilation);
       this.performance_preparation(faceToFaceMeeting);
       this.performance(bands, performanceTime, ventilation);
+      this.$modal.show("modal-content");
       return;
     },
     rehearsal(bands, rehearsalTime, ventilation) {
