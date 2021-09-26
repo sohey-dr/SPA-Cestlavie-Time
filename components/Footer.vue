@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="footer">
     <hr>
-    <div class="text-center">
+    <div class="text-center my-4">
       © 2021 Ce'st La Vie
     </div>
   </div>
