@@ -145,7 +145,7 @@
       </form>
     </div>
 
-    <modal name="modal-content">
+    <modal name="modal-content" height="auto" :scrollable="true">
       <div class="text-center">
         <div class="font-bold text-xl text-green-900 my-3">タイムテーブル</div>
         <p style="white-space: pre-wrap;" >{{ timeTable }}</p>
